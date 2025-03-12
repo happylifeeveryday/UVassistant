@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gray-50">
+    <!-- <div class="min-h-screen bg-gray-50"> -->
       <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4">
           <div class="flex items-center justify-between h-16">
@@ -34,14 +34,15 @@
           </div>
 
           <nav class="flex space-x-8 py-4">
-            <a href="#" class="text-blue-600 font-medium">View UV Index</a>
-            <a href="#" class="text-gray-600 hover:text-gray-900">Effects Of Sun Exposure</a>
-            <a href="#" class="text-gray-600 hover:text-gray-900">Reminders</a>
-            <a href="#" class="text-gray-600 hover:text-gray-900">Sun Protection Gear</a>
-          </nav>
+          <router-link to="/" class="text-blue-600 font-medium">Home</router-link>
+          <router-link to="/ViewUVIndex" class="text-blue-600 font-medium">UV Index</router-link>
+          <router-link to="/effects-of-sun-exposure" class="text-gray-600 hover:text-gray-900">Effects Of Sun Exposure</router-link>
+          <router-link to="/about" class="text-gray-600 hover:text-gray-900">About Us</router-link>
+          <router-link to="/sun-protection-gear" class="text-gray-600 hover:text-gray-900">Sun Protection Gear</router-link>
+        </nav>
         </div>
       </header>
-    </div>
+    <!-- </div> -->
   </template>
   
   <script lang="ts" setup>

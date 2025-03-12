@@ -5,17 +5,9 @@ import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <!-- <nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
-  </nav> -->
-  <!-- <RouterView /> -->
   <div class="app-container">
     <Header />
-    <main class="main-content">
-      <RouterView />
-    </main>
-
+    <router-view></router-view>
     <Footer />
   </div>
 

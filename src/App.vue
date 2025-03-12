@@ -4,10 +4,10 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <nav>
+  <!-- <nav>
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/about">About</RouterLink>
-  </nav>
+  </nav> -->
   <RouterView />
 </template>
 

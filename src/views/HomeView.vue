@@ -79,6 +79,7 @@ const forecastChart = ref(null)
 
 // OpenWeatherMap API key
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
+console.log(API_KEY)
 
 async function getLocation() {
   if (!navigator.geolocation) {

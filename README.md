@@ -33,3 +33,15 @@ npm run build
 ```sh
 npm run lint
 ```
+
+Explain how the router works
+
+components like widgets can be used in other View or just be userd by other component.
+
+couples of components form a view which is a real page that is shown in website.
+
+And all the view need to register in router.
+
+Then the router is imported to the App.vue(like main component)
+
+And the proccess above is the best practice.

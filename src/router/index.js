@@ -5,6 +5,8 @@ import ViewUVIndex from '../views/UVIndexView.vue'
 import EffectsOfSunExposure from '../views/EffectsOfSunExposureView.vue'
 import AgeCategoryDetails from '../views/AgeCategoryDetailsView.vue'
 import AgeCategoryDetailsView from '@/views/AgeCategoryDetailsView.vue'
+import Reminder from '@/views/ReminderView.vue'
+import ReminderView from '@/views/ReminderView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -17,6 +19,11 @@ const router = createRouter({
       path: '/ViewUVIndex',
       name: 'ViewUVIndex',
       component: ViewUVIndex,
+    },
+    {
+      path: '/Reminder',
+      name: 'Reminder',
+      component: ReminderView,
     },
     {
       path: '/EffectsOfSunExposure/:ageGroup',

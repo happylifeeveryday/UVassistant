@@ -34,8 +34,8 @@
           </div>
 
           <nav class="flex space-x-8 py-4">
-          <router-link to="/" class="text-blue-600 font-medium">Home</router-link>
-          <router-link to="/ViewUVIndex" class="text-blue-600 font-medium">UV Index</router-link>
+          <router-link to="/" class="text-gray-600 font-medium">Home</router-link>
+          <router-link to="/ViewUVIndex" class="text-gray-600 font-medium">UV Index</router-link>
           <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900">Effects Of Sun Exposure</router-link>
           <router-link to="/about" class="text-gray-600 hover:text-gray-900">About Us</router-link>
           <router-link to="/sun-protection-gear" class="text-gray-600 hover:text-gray-900">Sun Protection Gear</router-link>
@@ -45,7 +45,7 @@
     <!-- </div> -->
   </template>
   
-  <script lang="ts" setup>
+  <script setup>
 
   </script>
   
@@ -58,4 +58,9 @@
   input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  .router-link-active {
+  color: #2563eb; /* 例如蓝色 */
+  font-weight: 600;
+}
   </style>

@@ -5,7 +5,7 @@ import ViewUVIndex from '../views/UVIndexView.vue'
 import EffectsOfSunExposure from '../views/EffectsOfSunExposureView.vue'
 import AgeCategoryDetails from '../views/AgeCategoryDetailsView.vue'
 import AgeCategoryDetailsView from '@/views/AgeCategoryDetailsView.vue'
-import Reminder from '@/views/ReminderView.vue'
+import AccessDatabaseTest from '@/views/AccessDatabaseTest.vue'
 import ReminderView from '@/views/ReminderView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,6 +43,11 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
+    },
+    {
+      path: '/accessDatabase',
+      name: 'accessDatabase',
+      component: AccessDatabaseTest,
     },
   ],
 })

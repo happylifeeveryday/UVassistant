@@ -45,6 +45,7 @@
         <router-link to="/sun-protection-gear" class="text-gray-600 hover:text-gray-900"
           >Sun Protection Gear</router-link
         >
+        <router-link to="/accessDatabase" class="text-gray-600 hover:text-gray-900">Access Database Test</router-link>
       </nav>
     </div>
   </header>

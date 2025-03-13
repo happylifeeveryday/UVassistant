@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { initializeApp } from 'firebase/app'
+import { getFunctions } from 'firebase/functions'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -15,9 +16,8 @@ const firebaseConfig = {
 }
 
 initializeApp(firebaseConfig)
-
+const functions = getFunctions()
+export { functions }
 const app = createApp(App)
-
 app.use(router)
-
 app.mount('#app')

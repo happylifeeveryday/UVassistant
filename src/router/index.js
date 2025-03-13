@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import ViewUVIndex from '../views/UVIndexView.vue'
 import EffectsOfSunExposure from '../views/EffectsOfSunExposureView.vue'
+import AgeCategoryDetails from '../views/AgeCategoryDetailsView.vue'
+import AgeCategoryDetailsView from '@/views/AgeCategoryDetailsView.vue'
 import AccessDatabaseTest from '@/views/AccessDatabaseTest.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +18,12 @@ const router = createRouter({
       path: '/ViewUVIndex',
       name: 'ViewUVIndex',
       component: ViewUVIndex,
+    },
+    {
+      path: '/EffectsOfSunExposure/:ageGroup',
+      name: 'AgeCategoryDetails',
+      component: AgeCategoryDetailsView,
+      props: true  
     },
     {
       path: '/EffectsOfSunExposure',

@@ -228,6 +228,6 @@ function initForecastChart() {
 /* ECharts container height and other custom styles */
 [ref='forecastChart'] {
   width: 100%;
-  height: 400px; 
+  height: 400px;
 }
 </style>

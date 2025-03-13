@@ -33,7 +33,6 @@
               </div>
             </div>
             
-            <!-- UV Index Scale -->
             <div class="space-y-6">
               <h2 class="text-2xl font-bold text-orange-400">UV Index Scale</h2>
               <div class="grid grid-cols-11 gap-1">

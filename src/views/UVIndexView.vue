@@ -3,7 +3,20 @@
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow">
       <div class="bg-white rounded-lg shadow-lg p-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="space-y-6">
+          <div class="space-y-4">
+            <input
+              type="text"
+              v-model="locationName"
+              placeholder="Enter location name"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+            />
+            <button
+              @click="fetchWeatherByLocationName"
+              class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition w-full"
+            >
+              Get Weather & UV by Location Name
+            </button>
+
             <button
               @click="getLocation"
               class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full"
@@ -42,7 +55,7 @@
             <div class="relative w-full">
               <img
                 src="/src/assets/instruction.jpeg"
-                alt="Description"
+                alt="UV Index Scale"
                 class="w-full h-full object-cover"
               />
             </div>
@@ -61,7 +74,7 @@
 <script setup>
 import { ref, nextTick, computed } from 'vue'
 import * as echarts from 'echarts'
-
+const locationName = ref('')
 const latitude = ref(null)
 const longitude = ref(null)
 const weatherData = ref(null)
@@ -69,6 +82,34 @@ const uvIndex = ref(null)
 const hourlyForecast = ref([])
 const forecastChart = ref(null)
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
+
+async function fetchWeatherByLocationName() {
+  if (!locationName.value) {
+    alert('Please enter a location name.')
+    return
+  }
+
+  try {
+    const geoRes = await fetch(
+      `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(locationName.value)},AU&appid=${API_KEY}`,
+    )
+    const geoData = await geoRes.json()
+
+    if (!geoData.length) {
+      alert('Location not found.')
+      return
+    }
+
+    const { lat, lon } = geoData[0]
+
+    latitude.value = lat
+    longitude.value = lon
+
+    await fetchWeatherData(lat, lon)
+  } catch (error) {
+    alert('Error fetching location data: ' + error)
+  }
+}
 
 async function getLocation() {
   if (!navigator.geolocation) {

@@ -1,31 +1,34 @@
 <template>
-  <div class="tool-background min-vh-100 d-flex flex-column">
+  <div class="min-h-screen flex flex-col bg-gradient-to-br from-[#f2f5f7] to-[#d6dee2]">
     <!-- Main container -->
-    <div class="container my-5 flex-grow-1">
+    <div class="container mx-auto my-5 flex-grow">
       <!-- Button to get current location -->
-      <div class="row justify-content-center mb-4">
-        <div class="col-auto">
-          <button class="btn btn-primary" @click="getLocation">
+      <div class="flex justify-center mb-4">
+        <div>
+          <button
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            @click="getLocation"
+          >
             Get Current Location Weather & UV
           </button>
         </div>
       </div>
 
       <!-- Card to display weather/UV information -->
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-6">
-          <div class="card shadow-sm mb-4">
-            <div class="card-body">
-              <h5 class="card-title mb-3">Your Coordinates</h5>
+      <div class="flex justify-center">
+        <div class="w-full md:w-1/2">
+          <div class="bg-white rounded-lg shadow-sm mb-4">
+            <div class="p-4">
+              <h5 class="text-lg font-bold mb-3">Your Coordinates</h5>
               <p v-if="latitude && longitude">
                 <strong>Latitude: </strong>{{ latitude }}<br />
                 <strong>Longitude: </strong>{{ longitude }}
               </p>
               <p v-else>Coordinates not available</p>
 
-              <hr />
+              <hr class="my-4" />
 
-              <h5 class="card-title mb-3">Weather & UV Info</h5>
+              <h5 class="text-lg font-bold mb-3">Weather & UV Info</h5>
               <div v-if="weatherData">
                 <p><strong>Temperature: </strong>{{ weatherData.temp }} °C</p>
                 <p><strong>Weather: </strong>{{ weatherData.description }}</p>
@@ -40,12 +43,14 @@
       </div>
 
       <!-- 24-Hour Temperature & UVI Forecast -->
-      <div class="row justify-content-center" v-if="hourlyForecast && hourlyForecast.length">
-        <div class="col-12 col-md-8">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title mb-3">24-Hour Temperature & UVI Forecast</h5>
-              <div ref="forecastChart" style="width: 100%; height: 400px"></div>
+      <div class="flex justify-center" v-if="hourlyForecast && hourlyForecast.length">
+        <div class="w-full md:w-8/12">
+          <div class="bg-white rounded-lg shadow-sm">
+            <div class="p-4">
+              <h5 class="text-lg font-bold mb-3">
+                24-Hour Temperature & UVI Forecast
+              </h5>
+              <div ref="forecastChart" class="w-full h-[400px]"></div>
             </div>
           </div>
         </div>
@@ -53,8 +58,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light py-3 text-center">
-      <small class="text-muted">&copy; 2025 Weather & UV Tool Example</small>
+    <footer class="bg-gray-100 py-3 text-center">
+      <small class="text-gray-500">&copy; 2025 Weather & UV Tool Example</small>
     </footer>
   </div>
 </template>
@@ -215,19 +220,3 @@ function initForecastChart() {
   })
 }
 </script>
-
-<style scoped>
-.tool-background {
-  background: linear-gradient(135deg, #f2f5f7 0%, #d6dee2 100%);
-}
-
-.card {
-  border-radius: 8px;
-}
-
-/* ECharts container height and other custom styles */
-[ref='forecastChart'] {
-  width: 100%;
-  height: 400px;
-}
-</style>

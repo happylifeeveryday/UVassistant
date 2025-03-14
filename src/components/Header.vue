@@ -37,6 +37,7 @@
       <nav class="flex space-x-8 py-4">
         <router-link to="/" class="text-gray-600 font-medium">Home</router-link>
         <router-link to="/ViewUVIndex" class="text-gray-600 font-medium">UV Index</router-link>
+        <router-link to="/Reminder" class="text-gray-600 hover:text-gray-900">Screen Reminder</router-link>
         <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900"
           >Effects Of Sun Exposure</router-link
         >
@@ -66,7 +67,7 @@ input[type='number'] {
 }
 
 .router-link-active {
-  color: #2563eb; /* 例如蓝色 */
+  color: #2563eb; 
   font-weight: 600;
 }
 </style>

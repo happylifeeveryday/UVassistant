@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-gray-50 flex flex-col">
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow">
       <div class="bg-white rounded-lg shadow-lg p-8">
-        <h2 class="text-2xl font-bold mb-4">Reminder View</h2>
+        <h2 class="text-2xl font-bold mb-4">Sunscreen Reminder</h2>
         <div class="space-y-4">
           <!-- Display current time and current UVI -->
           <div class="border p-4 rounded-lg">

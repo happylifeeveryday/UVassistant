@@ -1,148 +1,266 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
-    <div class="max-w-xl w-full bg-white rounded-lg shadow-md p-8 relative">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Sunscreen Reminder</h2>
-
-      <div class="grid grid-cols-1 gap-6">
-        <div>
-          <label class="block text-gray-700 font-medium">Last Applied At:</label>
-          <div class="relative">
-            <select
-              v-model="lastApplied"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-            >
-              <option v-for="time in timeOptions" :key="time" :value="time">{{ time }}</option>
-            </select>
-            <i class="fas fa-clock absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+  <div class="min-h-screen bg-gray-50 flex flex-col">
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow">
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold mb-4">Reminder View</h2>
+        <div class="space-y-4">
+          <!-- Display current time and current UVI -->
+          <div class="border p-4 rounded-lg">
+            <p><strong>Current Time:</strong> {{ currentTime }}</p>
+            <p>
+              <strong>Current UVI:</strong>
+              {{ uvIndex !== null ? uvIndex : 'Loading...' }}
+            </p>
           </div>
-        </div>
 
-        <div>
-          <label class="block text-gray-700 font-medium">SPF Used:</label>
-          <div class="relative">
-            <select
-              v-model="spfValue"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-            >
-              <option v-for="spf in spfOptions" :key="spf" :value="spf">{{ spf }}</option>
-            </select>
-            <i class="fas fa-sun absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-gray-700 font-medium">Select Your Skin Tone:</label>
-          <div class="relative">
-            <select
-              v-model="skinTone"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-            >
-              <option v-for="tone in skinTones" :key="tone" :value="tone">{{ tone }}</option>
-            </select>
-            <i
-              class="fas fa-user-circle absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
-            ></i>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-gray-700 font-medium">Select Reminder Time:</label>
-          <div class="relative">
+          <!-- Input for SPF -->
+          <div>
             <input
-              type="text"
-              :value="selectedTime"
-              placeholder="Select time"
-              readonly
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 pr-10 focus:ring-2 focus:ring-blue-400 focus:border-transparent cursor-pointer"
+              type="number"
+              v-model.number="spfValue"
+              placeholder="Enter your sunscreen SPF value"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3"
             />
+          </div>
 
-            <input
-              type="time"
-              v-model="selectedTime"
-              class="absolute inset-0 opacity-0 cursor-pointer"
-            />
-
-            <i
-              class="fas fa-clock absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-            ></i>
+          <!-- Buttons -->
+          <div class="flex space-x-4">
+            <button
+              @click="getCurrentLocationAndFetchData"
+              class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+            >
+              Get Weather and Forecast Data
+            </button>
+            <button
+              @click="calculateReminder"
+              class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+            >
+              Calculate Sunscreen Reminder
+            </button>
           </div>
         </div>
 
-        <div class="text-center mt-4">
-          <p class="text-gray-600 text-sm">Next Application Time:</p>
-          <p class="text-4xl font-semibold text-blue-600">{{ nextApplicationTime }}</p>
+        <!-- 24-hour forecast chart -->
+        <div v-if="hourlyForecast.length" class="mt-8">
+          <h5 class="text-lg font-medium">
+            24-Hour Temperature & UVI Forecast
+          </h5>
+          <div ref="forecastChart" class="w-full h-64"></div>
         </div>
-
-        <button
-          @click="setReminder"
-          class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2"
-        >
-          <i class="fas fa-bell"></i>
-          Set a Reminder
-        </button>
       </div>
-    </div>
-
-    <div
-      v-if="showModal"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-    >
-      <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-lg">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Reminder Set!</h3>
-        <p class="text-gray-600">
-          You will be reminded to reapply sunscreen at
-          <span class="font-semibold text-blue-600">{{ nextApplicationTime }}</span
-          >.
-        </p>
-        <button
-          @click="closeModal"
-          class="mt-4 w-full bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg"
-        >
-          Close
-        </button>
-      </div>
-    </div>
+    </main>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref, watch } from 'vue'
+<script setup>
+import { ref, onMounted, nextTick } from 'vue'
+import * as echarts from 'echarts'
 
-const lastApplied = ref('12:00 PM')
-const spfValue = ref('30')
-const skinTone = ref('Natural Beige')
-const nextApplicationTime = ref('2:35 PM')
-const showModal = ref(false)
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
-const timeOptions = Array.from({ length: 12 }, (_, i) => {
-  let now = new Date()
-  now.setHours(now.getHours() + i + 1, 0, 0, 0)
-  return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })
+const uvIndex = ref(null)
+const hourlyForecast = ref([])
+const forecastChart = ref(null)
+const spfValue = ref(null)
+const currentTime = ref('')
+const userLatitude = ref(null)
+const userLongitude = ref(null)
+
+// Update current time every minute
+function updateTime() {
+  const now = new Date()
+  currentTime.value = now.toLocaleTimeString()
+}
+updateTime()
+setInterval(updateTime, 60000)
+
+// Request notification permission on mount and get user's location
+onMounted(() => {
+  if ('Notification' in window) {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'denied') {
+        alert('You denied notification permission. Notifications will not be sent.')
+      } else if (permission === 'default') {
+        alert('Please allow notification permission to receive notifications.')
+      }
+    })
+  } else {
+    alert('Your browser does not support notifications.')
+  }
+  getCurrentLocationAndFetchData()
 })
 
-const spfOptions = ['15', '30', '50', '70', '100']
-
-const skinTones = ['Fair', 'Light', 'Natural Beige', 'Medium', 'Olive', 'Deep']
-
-const selectedTime = ref('12:00')
-
-watch(selectedTime, (newTime) => {
-  nextApplicationTime.value = newTime
-})
-
-const setReminder = () => {
-  showModal.value = true
+// Get user's current location using the geolocation API
+function getCurrentLocationAndFetchData() {
+  if (!navigator.geolocation) {
+    alert('Geolocation is not supported by this browser.')
+    return
+  }
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      userLatitude.value = position.coords.latitude
+      userLongitude.value = position.coords.longitude
+      fetchWeatherData(userLatitude.value, userLongitude.value)
+    },
+    (error) => {
+      alert('Failed to get your location: ' + error.message)
+    }
+  )
 }
 
-const closeModal = () => {
-  showModal.value = false
+// Fetch weather data using the OpenWeather API
+async function fetchWeatherData(lat, lon) {
+  try {
+    const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+    const response = await fetch(url)
+    const data = await response.json()
+
+    if (data.current) {
+      uvIndex.value = data.current.uvi
+    } else {
+      alert('No weather data received.')
+      return
+    }
+
+    if (data.hourly && data.hourly.length > 0) {
+      // Use the first 24 hours forecast
+      hourlyForecast.value = data.hourly.slice(0, 24)
+      await nextTick()
+      initForecastChart()
+    }
+  } catch (error) {
+    alert('Error fetching weather data: ' + error)
+  }
+}
+
+// Initialize the forecast chart using ECharts
+function initForecastChart() {
+  const chartDom = forecastChart.value
+  if (!chartDom || !hourlyForecast.value.length) return
+
+  if (chartDom.__chart__) {
+    chartDom.__chart__.dispose()
+  }
+
+  const myChart = echarts.init(chartDom)
+  chartDom.__chart__ = myChart
+
+  // Convert each forecast timestamp to local hour format
+  const hours = hourlyForecast.value.map((item) => {
+    const date = new Date(item.dt * 1000)
+    return date.getHours() + ':00'
+  })
+  const temps = hourlyForecast.value.map((item) => item.temp)
+  const uvis = hourlyForecast.value.map((item) => item.uvi)
+
+  const option = {
+    tooltip: { trigger: 'axis' },
+    legend: { data: ['Temperature (°C)', 'UVI'] },
+    xAxis: { type: 'category', data: hours },
+    yAxis: [
+      { type: 'value', name: 'Temperature (°C)' },
+      { type: 'value', name: 'UVI' }
+    ],
+    series: [
+      {
+        name: 'Temperature (°C)',
+        type: 'line',
+        data: temps,
+        smooth: true,
+        yAxisIndex: 0
+      },
+      {
+        name: 'UVI',
+        type: 'line',
+        data: uvis,
+        smooth: true,
+        yAxisIndex: 1
+      }
+    ]
+  }
+
+  myChart.setOption(option)
+  window.addEventListener('resize', () => myChart.resize())
+}
+
+// Function to send a notification
+function sendNotification(title, body) {
+  if (Notification.permission === 'granted') {
+    new Notification(title, {
+      body: body,
+      icon: '/notification_icon.png', // Ensure the icon path is correct
+    })
+  } else {
+    alert('Please allow notification permission!')
+  }
+}
+
+// Calculate sunscreen reminder based on forecast data and SPF value
+function calculateReminder() {
+  if (!hourlyForecast.value.length) {
+    alert('Please fetch weather data first.')
+    return
+  }
+  if (!spfValue.value || spfValue.value <= 0) {
+    alert('Please enter a valid SPF value.')
+    return
+  }
+
+  // Find the first forecast time slot with UVI equal to 0
+  let zeroUviTime = null
+  for (const item of hourlyForecast.value) {
+    if (item.uvi === 0) {
+      zeroUviTime = new Date(item.dt * 1000)
+      break
+    }
+  }
+  if (!zeroUviTime) {
+    sendNotification(
+      'Sunscreen Reminder',
+      'No time slot with UVI equal to 0 found in the next 24 hours.'
+    )
+    return
+  }
+
+  // Sunscreen effective duration calculation:
+  // Base effective duration: 2 hours.
+  // For SPF values above 15, each additional SPF point adds 0.1 hour.
+  let effectiveDuration = 2
+  if (spfValue.value > 15) {
+    effectiveDuration += (spfValue.value - 15) * 0.1
+  }
+  // Calculate reapply time: current time plus effective duration
+  const now = new Date()
+  const reapplyTime = new Date(now.getTime() + effectiveDuration * 3600000)
+
+  // Immediate notification to inform the user about the upcoming reapply time
+  if (reapplyTime >= zeroUviTime) {
+    sendNotification(
+      'Sunscreen Reminder',
+      `If you’re going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won’t need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`
+      
+    )
+  } else {
+    sendNotification(
+      'Sunscreen Reminder',
+      `Between now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`
+    )
+    // Schedule a notification at the reapply time
+    const delay = reapplyTime.getTime() - now.getTime()
+    if (delay > 0) {
+      setTimeout(() => {
+        sendNotification(
+          'Time to Reapply Sunscreen',
+          `It's time to reapply your SPF ${spfValue.value} sunscreen.`
+        )
+      }, delay)
+    }
+  }
 }
 </script>
 
 <style scoped>
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.bg-gray-50 {
+  background: linear-gradient(135deg, #f2f5f7 0%, #d6dee2 100%);
 }
 </style>

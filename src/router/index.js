@@ -23,7 +23,7 @@ const router = createRouter({
       path: '/EffectsOfSunExposure/:ageGroup',
       name: 'AgeCategoryDetails',
       component: AgeCategoryDetailsView,
-      props: true  
+      props: true,
     },
     {
       path: '/EffectsOfSunExposure',

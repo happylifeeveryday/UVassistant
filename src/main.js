@@ -16,7 +16,7 @@ const firebaseConfig = {
 }
 
 initializeApp(firebaseConfig)
-const functions = getFunctions()
+const functions = getFunctions(undefined, 'australia-southeast1')
 export { functions }
 const app = createApp(App)
 app.use(router)

@@ -42,9 +42,7 @@
 
         <!-- 24-hour forecast chart -->
         <div v-if="hourlyForecast.length" class="mt-8">
-          <h5 class="text-lg font-medium">
-            24-Hour Temperature & UVI Forecast
-          </h5>
+          <h5 class="text-lg font-medium">24-Hour Temperature & UVI Forecast</h5>
           <div ref="forecastChart" class="w-full h-64"></div>
         </div>
       </div>
@@ -104,7 +102,7 @@ function getCurrentLocationAndFetchData() {
     },
     (error) => {
       alert('Failed to get your location: ' + error.message)
-    }
+    },
   )
 }
 
@@ -159,7 +157,7 @@ function initForecastChart() {
     xAxis: { type: 'category', data: hours },
     yAxis: [
       { type: 'value', name: 'Temperature (°C)' },
-      { type: 'value', name: 'UVI' }
+      { type: 'value', name: 'UVI' },
     ],
     series: [
       {
@@ -167,16 +165,16 @@ function initForecastChart() {
         type: 'line',
         data: temps,
         smooth: true,
-        yAxisIndex: 0
+        yAxisIndex: 0,
       },
       {
         name: 'UVI',
         type: 'line',
         data: uvis,
         smooth: true,
-        yAxisIndex: 1
-      }
-    ]
+        yAxisIndex: 1,
+      },
+    ],
   }
 
   myChart.setOption(option)
@@ -217,7 +215,7 @@ function calculateReminder() {
   if (!zeroUviTime) {
     sendNotification(
       'Sunscreen Reminder',
-      'No time slot with UVI equal to 0 found in the next 24 hours.'
+      'No time slot with UVI equal to 0 found in the next 24 hours.',
     )
     return
   }
@@ -225,6 +223,7 @@ function calculateReminder() {
   // Sunscreen effective duration calculation:
   // Base effective duration: 2 hours.
   // For SPF values above 15, each additional SPF point adds 0.1 hour.
+  // https://www.bananaboat.com/pages/what-spf-is-right-for-me
   let effectiveDuration = 2
   if (spfValue.value > 15) {
     effectiveDuration += (spfValue.value - 15) * 0.1
@@ -237,13 +236,12 @@ function calculateReminder() {
   if (reapplyTime >= zeroUviTime) {
     sendNotification(
       'Sunscreen Reminder',
-      `If you’re going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won’t need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`
-      
+      `If you’re going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won’t need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`,
     )
   } else {
     sendNotification(
       'Sunscreen Reminder',
-      `Between now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`
+      `Between now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`,
     )
     // Schedule a notification at the reapply time
     const delay = reapplyTime.getTime() - now.getTime()
@@ -251,7 +249,7 @@ function calculateReminder() {
       setTimeout(() => {
         sendNotification(
           'Time to Reapply Sunscreen',
-          `It's time to reapply your SPF ${spfValue.value} sunscreen.`
+          `It's time to reapply your SPF ${spfValue.value} sunscreen.`,
         )
       }, delay)
     }

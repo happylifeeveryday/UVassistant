@@ -14,9 +14,9 @@ import { httpsCallable } from 'firebase/functions'
 
 const query = async () => {
   try {
-    const queryFunc = httpsCallable(functions, 'testGetDataFromDatabase')
-    const result = await queryFunc()
-    console.log(result)
+    const getData = httpsCallable(functions, 'GetDatabaseData')
+    const data = await getData()
+    console.log(data)
   } catch (error) {
     console.error('Error fetching database data:', error)
   }

@@ -4,7 +4,7 @@ const { Client } = require("pg");
 
 admin.initializeApp();
 
-exports.testGetDataFromDatabase = functions
+exports.GetDatabaseData = functions
     .https.onCall({ region: "australia-southeast1" },async () => {
 
       const client = new Client({
@@ -23,9 +23,10 @@ exports.testGetDataFromDatabase = functions
         console.log('The database connection was successful!');
     
         // Executing SQL Queries
-        const res = await client.query('SELECT * FROM test_table;');
+        const AGE_RATE_2024 = await client.query('SELECT * FROM "AGE_RATE_2024";');
+        const YOUNG_ADULT_CANCER_TREND = await client.query('SELECT * FROM "YOUNG_ADULT_CANCER_TREND";');
 
-        return { rows: res.rows };
+        return { AGE_RATE_2024: AGE_RATE_2024.rows, YOUNG_ADULT_CANCER_TREND:YOUNG_ADULT_CANCER_TREND.rows};
     
       } catch (err) {
         console.error('Database connection or query error:', err.stack);

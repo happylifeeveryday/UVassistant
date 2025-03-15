@@ -44,7 +44,7 @@
         >
 
         <router-link to="/accessDatabase" class="text-gray-600 hover:text-gray-900"
-          >Access Database Test</router-link
+          >Impact</router-link
         >
       </nav>
     </div>

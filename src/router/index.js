@@ -4,9 +4,9 @@ import ViewUVIndex from '../views/UVIndexView.vue'
 import EffectsOfSunExposure from '../views/EffectsOfSunExposureView.vue'
 import AgeCategoryDetails from '../views/AgeCategoryDetailsView.vue'
 import AgeCategoryDetailsView from '@/views/AgeCategoryDetailsView.vue'
-import AccessDatabaseTest from '@/views/AccessDatabaseTest.vue'
 import ReminderView from '@/views/ReminderView.vue'
 import PersonalMeasure from '@/views/PersonalMeasureView.vue'
+import ImpactView from '@/views/ImpactView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -42,9 +42,9 @@ const router = createRouter({
       component: EffectsOfSunExposure,
     },
     {
-      path: '/accessDatabase',
-      name: 'accessDatabase',
-      component: AccessDatabaseTest,
+      path: '/ImpactView',
+      name: 'ImpactView',
+      component: ImpactView,
     },
   ],
 })

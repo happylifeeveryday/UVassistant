@@ -1,0 +1,124 @@
+{
+    "fitzpatrick_skin_types": [
+      {
+        "type": "I",
+        "description": "Very pale white skin, often with freckles, red or blonde hair, blue or green eyes",
+        "burn_tendency": "Always burns, never tans",
+        "tan_ability": "None",
+        "typical_examples": "Red hair with freckles, Northern Europeans",
+        "skincare_recommendations": {
+          "sunscreen": "Always wear sunscreen with SPF 50+",
+          "protection": "Avoid prolonged sun exposure, especially during peak hours (10 AM to 2 PM)",
+          "moisturizing": "Use gentle, non-abrasive moisturizers with aloe vera or hyaluronic acid",
+          "avoid": "Harsh exfoliants or chemical peels"
+        },
+        "uv_exposure_guidance": {
+          "children_adolescents": "Strictly limit exposure, always use sunscreen (SPF 50+), wear protective clothing, hats, and avoid peak hours (10 AM to 2 PM).",
+          "adults": "Strictly limit exposure, use high SPF sunscreen (50+), wear protective clothing, and avoid prolonged sun time.",
+          "middle_aged": "Strictly limit exposure, prioritize SPF 50+ sunscreen and protective gear after short exposure.",
+          "aged": "Extremely short exposure, use SPF 50+ sunscreen, avoid direct sunlight entirely if possible."
+        },
+        "suggested_protection_items": ["hat.png", "long_sleeve_clothing.png", "sunscreen.png", "umbrella.png"]
+      },
+      {
+        "type": "II",
+        "description": "Fair skin, possibly with freckles, light hair (blonde or light brown), light eyes",
+        "burn_tendency": "Burns easily, tans minimally",
+        "tan_ability": "Minimal",
+        "typical_examples": "Fair-skinned, fair-haired Caucasians",
+        "skincare_recommendations": {
+          "sunscreen": "Apply sunscreen daily with SPF 30-50",
+          "protection": "Avoid prolonged sun exposure without adequate protection, especially peak hours (10 AM to 2 PM)",
+          "moisturizing": "Use hydrating moisturizers with vitamin C",
+          "avoid": "Harsh or abrasive skincare products"
+        },
+        "uv_exposure_guidance": {
+          "children_adolescents": "Limit exposure, use sunscreen (SPF 30-50), wear hats and protective clothing, avoid peak hours.",
+          "adults": "Limit exposure, use SPF 30-50 sunscreen, wear long-sleeved clothing.",
+          "middle_aged": "Limit exposure, ensure SPF 30-50 sunscreen and protection for short periods.",
+          "aged": "Short exposure, use SPF 30-50 sunscreen, minimize sunlight as much as possible."
+        },
+        "suggested_protection_items": ["hat.png", "long_sleeve_clothing.png", "sunscreen.png"]
+      },
+      {
+        "type": "III",
+        "description": "Medium skin tone, light brown hair, varied eye colors",
+        "burn_tendency": "Sometimes burns, tans to light brown",
+        "tan_ability": "Moderate",
+        "typical_examples": "Darker Caucasians, some Asians",
+        "skincare_recommendations": {
+          "sunscreen": "Use sunscreen daily with SPF 15-30",
+          "protection": "Avoid skipping sunscreen, even on cloudy days, during peak hours (10 AM to 2 PM)",
+          "moisturizing": "Use products containing antioxidants like niacinamide",
+          "avoid": "Harsh or abrasive exfoliants"
+        },
+        "uv_exposure_guidance": {
+          "children_adolescents": "Moderate exposure, use sunscreen (SPF 15-30), wear a hat, avoid peak hours.",
+          "adults": "Moderate exposure, use SPF 15-30 sunscreen, consider a hat or sunglasses.",
+          "middle_aged": "Moderate exposure, use SPF 15-30 sunscreen, short exposure is acceptable.",
+          "aged": "Short exposure, use SPF 15-30 sunscreen, monitor skin changes."
+        },
+        "suggested_protection_items": ["hat.png", "sunscreen.png"]
+      },
+      {
+        "type": "IV",
+        "description": "Olive or light brown skin, dark brown hair, dark eyes",
+        "burn_tendency": "Rarely burns, tans easily",
+        "tan_ability": "High",
+        "typical_examples": "Mediterranean, Middle Eastern, Southern Asian",
+        "skincare_recommendations": {
+          "sunscreen": "Use sunscreen daily with SPF 15",
+          "protection": "Avoid prolonged sun exposure without SPF 15 sunscreen",
+          "moisturizing": "Use hydrating and antioxidant-rich products",
+          "avoid": "Skipping sunscreen"
+        },
+        "uv_exposure_guidance": {
+          "children_adolescents": "Moderate exposure, recommend SPF 15 sunscreen, optional hat.",
+          "adults": "Moderate exposure, use SPF 15 sunscreen as needed.",
+          "middle_aged": "Moderate exposure, monitor skin, use SPF 15 if needed.",
+          "aged": "Moderate exposure, focus on skin health with SPF 15."
+        },
+        "suggested_protection_items": ["sunscreen.png"]
+      },
+      {
+        "type": "V",
+        "description": "Brown skin, dark hair, dark eyes",
+        "burn_tendency": "Rarely burns, tans well",
+        "tan_ability": "Very high",
+        "typical_examples": "Some Hispanics, some Africans",
+        "skincare_recommendations": {
+          "sunscreen": "Use sunscreen daily with SPF 15",
+          "protection": "Avoid prolonged sun exposure without SPF 15",
+          "moisturizing": "Use hydrating and antioxidant-rich products",
+          "avoid": "Skipping sunscreen"
+        },
+        "uv_exposure_guidance": {
+          "children_adolescents": "Moderate exposure, focus on SPF 15 for vitamin D balance.",
+          "adults": "Moderate exposure, use SPF 15, monitor skin health.",
+          "middle_aged": "Moderate exposure, use SPF 15, focus on vitamin D levels.",
+          "aged": "Moderate exposure, use SPF 15, consider vitamin D supplements if needed."
+        },
+        "suggested_protection_items": ["sunscreen.png"]
+      },
+      {
+        "type": "VI",
+        "description": "Deeply pigmented dark brown to black skin, dark hair, dark eyes",
+        "burn_tendency": "Never burns, deeply pigmented",
+        "tan_ability": "Very high",
+        "typical_examples": "Darker Africans, Indigenous Australians",
+        "skincare_recommendations": {
+          "sunscreen": "Use sunscreen daily with SPF 15 as needed",
+          "protection": "Avoid prolonged sun exposure without SPF 15",
+          "moisturizing": "Use hydrating and antioxidant-rich products",
+          "avoid": "Skipping sunscreen"
+        },
+        "uv_exposure_guidance": {
+          "children_adolescents": "Moderate exposure, ensure SPF 15 for vitamin D balance.",
+          "adults": "Moderate exposure, use SPF 15 if needed, monitor skin.",
+          "middle_aged": "Moderate exposure, use SPF 15, focus on vitamin D levels.",
+          "aged": "Moderate exposure, use SPF 15, consider vitamin D supplements if needed."
+        },
+        "suggested_protection_items": ["sunscreen.png"]
+      }
+    ]
+  }

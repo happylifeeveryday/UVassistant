@@ -15,12 +15,15 @@
 
           <!-- Input for SPF -->
           <div>
-            <input
-              type="number"
-              v-model.number="spfValue"
-              placeholder="Enter your sunscreen SPF value"
-              class="w-full border border-gray-300 rounded-lg px-4 py-3"
-            />
+            <label class="flex items-center space-x-2">
+              <input
+                type="number"
+                v-model.number="spfValue"
+                placeholder="Enter your sunscreen SPF value"
+                class="w-full border border-gray-300 rounded-lg px-4 py-3"
+              />
+              <span class="text-blue-600 cursor-pointer" :title="spfTooltip">?</span>
+            </label>
           </div>
 
           <!-- Buttons -->
@@ -64,6 +67,8 @@ const currentTime = ref('')
 const userLatitude = ref(null)
 const userLongitude = ref(null)
 
+
+const spfTooltip = ref('SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.')
 // Update current time every minute
 function updateTime() {
   const now = new Date()

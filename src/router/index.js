@@ -6,6 +6,7 @@ import AgeCategoryDetails from '../views/AgeCategoryDetailsView.vue'
 import AgeCategoryDetailsView from '@/views/AgeCategoryDetailsView.vue'
 import AccessDatabaseTest from '@/views/AccessDatabaseTest.vue'
 import ReminderView from '@/views/ReminderView.vue'
+import PersonalMeasure from '@/views/PersonalMeasureView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -23,6 +24,11 @@ const router = createRouter({
       path: '/Reminder',
       name: 'Reminder',
       component: ReminderView,
+    },
+    {
+      path: '/PersonalMeasure',
+      name: 'PersonalMeasure',
+      component: PersonalMeasure,
     },
     {
       path: '/EffectsOfSunExposure/:ageGroup',

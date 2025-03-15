@@ -1,12 +1,16 @@
 <template>
-  <h1>Access Database test</h1>
   <div v-if="result" class="space-y-8">
-    <h2 class="text-xl font-bold">Retrieved Data:</h2>
     <div class="chart-container" style="position: relative; height:400px; width:100%;">
       <div ref="ageRateChart" style="width: 100%; height: 100%;"></div>
+      <p class="text-center text-sm mt-2">
+        This bar chart provides an overview of the Age Rate data for 2024 across different age groups. It illustrates how the rate varies among various segments of the population.
+      </p>
     </div>
     <div class="chart-container" style="position: relative; height:400px; width:100%;">
       <div ref="cancerTrendChart" style="width: 100%; height: 100%;"></div>
+      <p class="text-center text-sm mt-2">
+        This line chart presents the trend of young adult cancer rates over multiple years, offering insight into how the rate has evolved over time.
+      </p>
     </div>
   </div>
 </template>

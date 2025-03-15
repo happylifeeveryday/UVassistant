@@ -39,12 +39,11 @@
         <router-link to="/ViewUVIndex" class="text-gray-600 font-medium">UV Index</router-link>
         <router-link to="/Reminder" class="text-gray-600 hover:text-gray-900">Screen Reminder</router-link>
         <router-link to="/PersonalMeasure" class="text-gray-600 font-medium">Personal Measure</router-link>
-        <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900"
+        
+        <router-link to="/ImpactView" class="text-gray-600 hover:text-gray-900"
+          >Impact</router-link>
+          <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900"
           >Effects Of Sun Exposure</router-link
-        >
-
-        <router-link to="/accessDatabase" class="text-gray-600 hover:text-gray-900"
-          >Impact</router-link
         >
       </nav>
     </div>

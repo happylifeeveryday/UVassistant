@@ -37,12 +37,15 @@
       <nav class="flex space-x-8 py-4">
         <router-link to="/" class="text-gray-600 font-medium">Home</router-link>
         <router-link to="/ViewUVIndex" class="text-gray-600 font-medium">UV Index</router-link>
-        <router-link to="/Reminder" class="text-gray-600 hover:text-gray-900">Screen Reminder</router-link>
-        <router-link to="/PersonalMeasure" class="text-gray-600 font-medium">Personal Measure</router-link>
-        
-        <router-link to="/ImpactView" class="text-gray-600 hover:text-gray-900"
-          >Impact</router-link>
-          <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900"
+        <router-link to="/Reminder" class="text-gray-600 hover:text-gray-900"
+          >Screen Reminder</router-link
+        >
+        <router-link to="/PersonalMeasure" class="text-gray-600 font-medium"
+          >Personal Measure</router-link
+        >
+
+        <router-link to="/ImpactView" class="text-gray-600 hover:text-gray-900">Impact</router-link>
+        <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900"
           >Effects Of Sun Exposure</router-link
         >
       </nav>

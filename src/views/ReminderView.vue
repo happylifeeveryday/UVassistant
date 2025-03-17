@@ -56,7 +56,7 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import * as echarts from 'echarts'
-
+import { useToast } from 'vue-toastification'
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
 const uvIndex = ref(null)
@@ -66,9 +66,11 @@ const spfValue = ref(null)
 const currentTime = ref('')
 const userLatitude = ref(null)
 const userLongitude = ref(null)
+const toast = useToast()
 
-
-const spfTooltip = ref('SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.')
+const spfTooltip = ref(
+  'SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.',
+)
 // Update current time every minute
 function updateTime() {
   const now = new Date()
@@ -218,6 +220,7 @@ function calculateReminder() {
     }
   }
   if (!zeroUviTime) {
+    toast.info('Sunscreen Reminder \nNo time slot with UVI equal to 0 found in the next 24 hours.')
     sendNotification(
       'Sunscreen Reminder',
       'No time slot with UVI equal to 0 found in the next 24 hours.',
@@ -239,11 +242,17 @@ function calculateReminder() {
 
   // Immediate notification to inform the user about the upcoming reapply time
   if (reapplyTime >= zeroUviTime) {
+    toast.info(
+      `Sunscreen Reminder \nIf you're going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won't need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`
+    )
     sendNotification(
       'Sunscreen Reminder',
       `If you’re going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won’t need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`,
     )
   } else {
+    toast.info(
+      `Sunscreen Reminder \nBetween now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`
+    )
     sendNotification(
       'Sunscreen Reminder',
       `Between now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`,
@@ -252,6 +261,9 @@ function calculateReminder() {
     const delay = reapplyTime.getTime() - now.getTime()
     if (delay > 0) {
       setTimeout(() => {
+        toast.info(
+          `Time to Reapply Sunscreen \nIt's time to reapply your SPF ${spfValue.value} sunscreen.`,
+        )
         sendNotification(
           'Time to Reapply Sunscreen',
           `It's time to reapply your SPF ${spfValue.value} sunscreen.`,

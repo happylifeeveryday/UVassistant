@@ -179,10 +179,10 @@ const generateRecommendation = () => {
   }
 }
 const handleImageError = (event, item) => {
-  console.error(`Failed to load image: /data/${item}`)
-  event.target.src = '/data/placeholder.png' // Fallback image (place a placeholder.png in /public/data)
-  event.target.alt = `Image not found: ${item.replace('.png', '').replace('_', ' ')}`
-}
+  console.error(`Failed to load image: /data/${item}`);
+  event.target.src = '/data/placeholder.png'; 
+  event.target.alt = `Image not found: ${item.replace('.png', '').replace('_', ' ')}`;
+};
 </script>
 
 <style scoped>

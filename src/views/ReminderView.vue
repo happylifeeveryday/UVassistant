@@ -4,7 +4,7 @@
       <div class="bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold mb-4">Sunscreen Reminder</h2>
         <div class="space-y-4">
-          <!-- Display current time and current UVI -->
+
           <div class="border p-4 rounded-lg">
             <p><strong>Current Time:</strong> {{ currentTime }}</p>
             <p>
@@ -13,7 +13,6 @@
             </p>
           </div>
 
-          <!-- Input for SPF -->
           <div>
             <label class="flex items-center space-x-2">
               <input
@@ -26,7 +25,6 @@
             </label>
           </div>
 
-          <!-- Buttons -->
           <div class="flex space-x-4">
             <button
               @click="getCurrentLocationAndFetchData"
@@ -68,10 +66,8 @@ const userLatitude = ref(null)
 const userLongitude = ref(null)
 const toast = useToast()
 
-const spfTooltip = ref(
-  'SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.',
-)
-// Update current time every minute
+
+const spfTooltip = ref('SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.')
 function updateTime() {
   const now = new Date()
   currentTime.value = now.toLocaleTimeString()
@@ -79,12 +75,10 @@ function updateTime() {
 updateTime()
 setInterval(updateTime, 60000)
 
-// Request notification permission on mount and get user's location
 onMounted(() => {
   getCurrentLocationAndFetchData()
 })
 
-// Get user's current location using the geolocation API
 function getCurrentLocationAndFetchData() {
   if (!navigator.geolocation) {
     toast.error('Geolocation is not supported by this browser.')
@@ -102,7 +96,7 @@ function getCurrentLocationAndFetchData() {
   )
 }
 
-// Fetch weather data using the OpenWeather API
+
 async function fetchWeatherData(lat, lon) {
   try {
     const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
@@ -117,7 +111,7 @@ async function fetchWeatherData(lat, lon) {
     }
 
     if (data.hourly && data.hourly.length > 0) {
-      // Use the first 24 hours forecast
+
       hourlyForecast.value = data.hourly.slice(0, 24)
       await nextTick()
       initForecastChart()
@@ -127,7 +121,7 @@ async function fetchWeatherData(lat, lon) {
   }
 }
 
-// Initialize the forecast chart using ECharts
+
 function initForecastChart() {
   const chartDom = forecastChart.value
   if (!chartDom || !hourlyForecast.value.length) return
@@ -177,17 +171,16 @@ function initForecastChart() {
   window.addEventListener('resize', () => myChart.resize())
 }
 
-// Function to send a notification
+
 function sendNotification(title, body) {
   if (Notification.permission === 'granted') {
     new Notification(title, {
       body: body,
-      icon: '/notification_icon.png', // Ensure the icon path is correct
+      icon: '/notification_icon.png', 
     })
   }
 }
 
-// Calculate sunscreen reminder based on forecast data and SPF value
 function calculateReminder() {
   if (!hourlyForecast.value.length) {
     toast.error('Please fetch weather data first.')
@@ -198,7 +191,6 @@ function calculateReminder() {
     return
   }
 
-  // Find the first forecast time slot with UVI equal to 0
   let zeroUviTime = null
   for (const item of hourlyForecast.value) {
     if (item.uvi === 0) {
@@ -215,19 +207,15 @@ function calculateReminder() {
     return
   }
 
-  // Sunscreen effective duration calculation:
-  // Base effective duration: 2 hours.
-  // For SPF values above 15, each additional SPF point adds 0.1 hour.
-  // https://www.bananaboat.com/pages/what-spf-is-right-for-me
+
   let effectiveDuration = 2
   if (spfValue.value > 15) {
     effectiveDuration += (spfValue.value - 15) * 0.1
   }
-  // Calculate reapply time: current time plus effective duration
+
   const now = new Date()
   const reapplyTime = new Date(now.getTime() + effectiveDuration * 3600000)
 
-  // Immediate notification to inform the user about the upcoming reapply time
   if (reapplyTime >= zeroUviTime) {
     toast.info(
       `Sunscreen Reminder \nIf you're going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won't need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`
@@ -244,7 +232,7 @@ function calculateReminder() {
       'Sunscreen Reminder',
       `Between now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`,
     )
-    // Schedule a notification at the reapply time
+
     const delay = reapplyTime.getTime() - now.getTime()
     if (delay > 0) {
       setTimeout(() => {

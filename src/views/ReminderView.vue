@@ -84,13 +84,13 @@ onMounted(() => {
   if ('Notification' in window) {
     Notification.requestPermission().then((permission) => {
       if (permission === 'denied') {
-        alert('You denied notification permission. Notifications will not be sent.')
+        toast.error('You denied notification permission. Notifications will not be sent.')
       } else if (permission === 'default') {
-        alert('Please allow notification permission to receive notifications.')
+        toast.error('Please allow notification permission to receive notifications.')
       }
     })
   } else {
-    alert('Your browser does not support notifications.')
+    toast.error('Your browser does not support notifications.')
   }
   getCurrentLocationAndFetchData()
 })
@@ -98,7 +98,7 @@ onMounted(() => {
 // Get user's current location using the geolocation API
 function getCurrentLocationAndFetchData() {
   if (!navigator.geolocation) {
-    alert('Geolocation is not supported by this browser.')
+    toast.error('Geolocation is not supported by this browser.')
     return
   }
   navigator.geolocation.getCurrentPosition(
@@ -108,7 +108,7 @@ function getCurrentLocationAndFetchData() {
       fetchWeatherData(userLatitude.value, userLongitude.value)
     },
     (error) => {
-      alert('Failed to get your location: ' + error.message)
+      toast.error('Failed to get your location: ' + error.message)
     },
   )
 }
@@ -123,7 +123,7 @@ async function fetchWeatherData(lat, lon) {
     if (data.current) {
       uvIndex.value = data.current.uvi
     } else {
-      alert('No weather data received.')
+      toast.error('No weather data received.')
       return
     }
 
@@ -134,7 +134,7 @@ async function fetchWeatherData(lat, lon) {
       initForecastChart()
     }
   } catch (error) {
-    alert('Error fetching weather data: ' + error)
+    toast.error('Error fetching weather data: ' + error)
   }
 }
 
@@ -196,18 +196,18 @@ function sendNotification(title, body) {
       icon: '/notification_icon.png', // Ensure the icon path is correct
     })
   } else {
-    alert('Please allow notification permission!')
+    toast.error('Please allow notification permission!')
   }
 }
 
 // Calculate sunscreen reminder based on forecast data and SPF value
 function calculateReminder() {
   if (!hourlyForecast.value.length) {
-    alert('Please fetch weather data first.')
+    toast.error('Please fetch weather data first.')
     return
   }
   if (!spfValue.value || spfValue.value <= 0) {
-    alert('Please enter a valid SPF value.')
+    toast.error('Please enter a valid SPF value.')
     return
   }
 

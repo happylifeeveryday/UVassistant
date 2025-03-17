@@ -81,17 +81,6 @@ setInterval(updateTime, 60000)
 
 // Request notification permission on mount and get user's location
 onMounted(() => {
-  if ('Notification' in window) {
-    Notification.requestPermission().then((permission) => {
-      if (permission === 'denied') {
-        toast.error('You denied notification permission. Notifications will not be sent.')
-      } else if (permission === 'default') {
-        toast.error('Please allow notification permission to receive notifications.')
-      }
-    })
-  } else {
-    toast.error('Your browser does not support notifications.')
-  }
   getCurrentLocationAndFetchData()
 })
 
@@ -195,8 +184,6 @@ function sendNotification(title, body) {
       body: body,
       icon: '/notification_icon.png', // Ensure the icon path is correct
     })
-  } else {
-    toast.error('Please allow notification permission!')
   }
 }
 

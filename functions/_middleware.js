@@ -69,13 +69,13 @@ export async function onRequest(context) {
           <h1 class="card-title text-center mb-4">Access Required</h1>
           <form action="/login" method="post">
             <div class="mb-3">
-              <label for="password" class="form-label">Enter Password</label>
+              <label for="password" class="form-label">Enter Credential</label>
               <input
                 type="password"
                 class="form-control"
                 id="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Credential"
                 required
               />
             </div>

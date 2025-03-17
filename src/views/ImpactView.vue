@@ -1,20 +1,26 @@
 <template>
-  <div v-if="result" class="space-y-8">
-    <div class="chart-card">
-      <div class="chart-container" style="position: relative; height:400px; width:100%;">
-        <div ref="ageRateChart" style="width: 100%; height: 100%;"></div>
+  <div v-if="result" class="space-y-16 pt-24 pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="chart-card">
+        <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
+          <div ref="ageRateChart" style="width: 100%; height: 100%;"></div>
+        </div>
+        <div class="border px-8 py-6 rounded-lg mt-4 mx-auto max-w-3xl"> 
+          <p class="font-bold text-lg">
+            This bar chart provides an overview of the Age Rate data for 2024 across different age groups. It illustrates how the rate varies among various segments of the population. The data is segmented to highlight trends and differences in rates across age demographics, offering valuable insights for public health analysis.
+          </p>
+        </div>
       </div>
-      <p class="text-center font-bold text-lg w-full mt-2">
-        This bar chart provides an overview of the Age Rate data for 2024 across different age groups. It illustrates how the rate varies among various segments of the population.
-      </p>
-    </div>
-    <div class="chart-card">
-      <div class="chart-container" style="position: relative; height:400px; width:100%;">
-        <div ref="cancerTrendChart" style="width: 100%; height: 100%;"></div>
+      <div class="chart-card">
+        <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
+          <div ref="cancerTrendChart" style="width: 100%; height: 100%;"></div>
+        </div>
+        <div class="border px-8 py-6 rounded-lg mt-4 mx-auto max-w-3xl"> 
+          <p class="font-bold text-lg">
+            This line chart presents the trend of young adult cancer rates over multiple years, offering insight into how the rate has evolved over time. The data spans several decades, providing a comprehensive view of changes and potential influencing factors, which can guide future health policies and research.
+          </p>
+        </div>
       </div>
-      <p class="text-center font-bold text-lg w-full mt-2">
-        This line chart presents the trend of young adult cancer rates over multiple years, offering insight into how the rate has evolved over time.
-      </p>
     </div>
   </div>
 </template>
@@ -71,11 +77,12 @@ const initAgeRateChart = (ageData) => {
       data: labels,
       axisLabel: {
         rotate: 45
-      }
+      },
+      name: 'Age Group'
     },
     yAxis: {
       type: 'value',
-      name: 'Rate'
+      name: 'Rate (per 100,000)' 
     },
     series: [{
       type: 'bar',
@@ -113,11 +120,12 @@ const initCancerTrendChart = (trendData) => {
     },
     xAxis: {
       type: 'category',
-      data: labels
+      data: labels,
+      name: 'Year' 
     },
     yAxis: {
       type: 'value',
-      name: 'Rate'
+      name: 'Rate (per 100,000)' 
     },
     series: [{
       type: 'line',
@@ -146,5 +154,11 @@ onMounted(() => {
 .chart-container {
   margin: auto;
   max-width: 800px;
+}
+
+.chart-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 </style>

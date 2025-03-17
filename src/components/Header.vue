@@ -1,11 +1,12 @@
 <template>
-  <!-- <div class="min-h-screen bg-gray-50"> -->
   <header class="bg-white shadow-sm">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
-          <i class="fa-solid fa-sun text-yellow-400 text-2xl"></i>
-          <span class="ml-2 text-lg font-semibold">UV Protection Assistant</span>
+          <router-link to="/" class="flex items-center no-active-class">
+            <i class="fa-solid fa-sun text-yellow-400 text-2xl"></i>
+            <span class="ml-2 text-lg font-semibold">UV Protection Assistant</span>
+          </router-link>
         </div>
 
         <div class="flex-1 max-w-2xl mx-8">
@@ -38,17 +39,13 @@
         <router-link to="/" class="text-gray-600 font-medium">Home</router-link>
         <router-link to="/ViewUVIndex" class="text-gray-600 font-medium">UV Index</router-link>
         <router-link to="/Reminder" class="text-gray-600 hover:text-gray-900">Screen Reminder</router-link>
-        <router-link to="/PersonalMeasure" class="text-gray-600 font-medium">Personal Measure</router-link>
-        
-        <router-link to="/ImpactView" class="text-gray-600 hover:text-gray-900"
-          >Impact</router-link>
-          <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900"
-          >Effects Of Sun Exposure</router-link
-        >
+        <router-link to="/PersonalMeasure" class="text-gray-600 font-medium">Personal Recommendation</router-link>
+
+        <router-link to="/ImpactView" class="text-gray-600 hover:text-gray-900">Data Insights</router-link>
+        <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900">Effects Of Sun Exposure</router-link>
       </nav>
     </div>
   </header>
-  <!-- </div> -->
 </template>
 
 <script setup></script>
@@ -61,6 +58,10 @@ input[type='number']::-webkit-outer-spin-button {
 }
 input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.no-active-class.router-link-active {
+  color: inherit;
 }
 
 .router-link-active {

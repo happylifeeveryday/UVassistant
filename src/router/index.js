@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ViewUVIndex from '../views/UVIndexView.vue'
 import EffectsOfSunExposure from '../views/EffectsOfSunExposureView.vue'
-import AgeCategoryDetailsView from '@/views/AgeCategoryDetailsView.vue'
+import CommunityCategoryDetailsView from '@/views/CommunityCategoryDetailsView.vue'
 import ReminderView from '@/views/ReminderView.vue'
 import PersonalMeasure from '@/views/PersonalMeasureView.vue'
 import ImpactView from '@/views/ImpactView.vue'
@@ -30,9 +30,9 @@ const router = createRouter({
       component: PersonalMeasure,
     },
     {
-      path: '/EffectsOfSunExposure/:ageGroup',
-      name: 'AgeCategoryDetails',
-      component: AgeCategoryDetailsView,
+      path: '/CommunityCategoryDetails/:communityGroup',
+      name: 'CommunityCategoryDetails',
+      component: CommunityCategoryDetailsView,
       props: true,
     },
     {

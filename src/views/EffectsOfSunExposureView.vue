@@ -86,14 +86,36 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 const router = useRouter()
 
+
 function goToDetails(communityGroup) {
-  router.push({
-    name: 'CommunityCategoryDetails',
-    params: { communityGroup },
-  })
+  router.push({ name: 'CommunityCategoryDetails', params: { communityGroup } })
 }
+
+const communityData = {
+  'outdoor-workers': {
+    title: 'Outdoor Workers',
+    description: 'Outdoor workers face prolonged sun exposure, increasing the risk of skin damage and heat-related illnesses.',
+  },
+  'darker-skin': {
+    title: 'People with Darker Skin Tones',
+    description: 'Melanin provides some protection, but sunscreen is still necessary for long-term skin health.',
+  },
+  elderly: {
+    title: 'Elderly & Immunocompromised',
+    description: 'Older adults need controlled sun exposure for vitamin D while avoiding excessive UV damage.',
+  },
+  athletes: {
+    title: 'Athletes & Outdoor Enthusiasts',
+    description: 'Athletes should balance sun exposure with hydration and sun protection for optimal performance.',
+  },
+}
+
+const route = useRoute()
+const communityGroup = computed(() => route.params.communityGroup || 'outdoor-workers')
+const communityContent = computed(() => communityData[communityGroup.value] || communityData['outdoor-workers'])
 </script>

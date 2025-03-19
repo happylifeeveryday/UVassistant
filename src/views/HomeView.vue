@@ -3,26 +3,26 @@
   <div class="relative w-full h-screen overflow-hidden">
     <!-- Video background -->
     <video
-      src="/home-video.mp4"
+      src="/src/assets/home-video.mp4"
       autoplay
       loop
       muted
       playsinline
-      class="w-full h-full object-cover"
+      class="absolute top-0 left-0 w-full h-full object-cover z-0"
     >
       Your browser does not support HTML5 video
     </video>
 
     <div 
       class="absolute inset-0 flex flex-col items-center justify-center 
-             bg-black bg-opacity-20 text-white"
+             text-white z-10"
     >
       <!-- Title and subtitle on video layer -->
       <div class="text-center mb-8">
         <h1 class="text-2xl sm:text-3xl font-bold mb-4">
           Every tool you could want to manage your UV exposure
         </h1>
-        <p class="text-gray-100">
+        <p>
           Stay informed about the UV Index, set reminders, and learn about skin protection and statistics.
         </p>
       </div>

@@ -46,7 +46,7 @@
               id="exposure-time"
               min="0"
               max="240"
-              placeholder="Enter minutes (optional)"
+              placeholder="Enter the Sun Exposure Time (Minutes)"
               class="w-full border border-gray-300 rounded-lg px-4 py-3"
             />
           </div>

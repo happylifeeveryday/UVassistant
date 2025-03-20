@@ -25,23 +25,6 @@
           <div class="space-y-6">
             <h2 class="text-2xl font-bold text-orange-400">UV Index Scale</h2>
             <div class="relative w-full">
-              <div class="flex justify-around items-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffeb3b" class="w-6 h-6">
-                  <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffc107" class="w-8 h-8">
-                  <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff9800" class="w-10 h-10">
-                  <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f44336" class="w-12 h-12">
-                  <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#9c27b0" class="w-14 h-14">
-                  <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zM12 6a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" />
-                </svg>
-              </div>
               <div class="bg-orange-400 text-white p-4 rounded-lg mb-4">
                 <h3 class="text-xl font-bold">UV Index</h3>
                 <p class="text-2xl font-bold">{{ uvIndex }}</p>

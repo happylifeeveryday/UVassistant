@@ -1,13 +1,13 @@
 <template>
   <div v-if="result" class="space-y-16 pt-24 pb-24">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 gap-8 space-y-8">
       <div class="chart-card">
         <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
           <div ref="ageRateChart" style="width: 100%; height: 100%;"></div>
         </div>
         <div class="border px-8 py-6 rounded-lg mt-4 mx-auto max-w-3xl"> 
           <p class="font-bold text-lg">
-            This bar chart provides an overview of the Age Rate data for 2024 across different age groups. It illustrates how the rate varies among various segments of the population. The data is segmented to highlight trends and differences in rates across age demographics, offering valuable insights for public health analysis.
+            This bar chart illustrates the cancer incidence rate across different age groups in 2024. It highlights variations in cancer rates among different demographics, showing trends that can inform public health research. By segmenting the data by age, this visualization provides valuable insights into how cancer risk changes over a lifetime.
           </p>
         </div>
       </div>
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-</template>
+</template> 
 
 <script setup>
 import { ref, nextTick, onMounted } from 'vue'
@@ -65,7 +65,7 @@ const initAgeRateChart = (ageData) => {
 
   const option = {
     title: {
-      text: 'Age Rate 2024',
+      text: 'Number of Cancer Patient Over Different Age Group 2024',
       left: 'center',
     },
     tooltip: {

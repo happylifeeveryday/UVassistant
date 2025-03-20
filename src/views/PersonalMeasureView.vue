@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex flex-col">
-    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow">
+  <div class="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+    <main class="max-w-screen-lg w-full mx-auto px-4 py-8 flex-grow">
       <div class="bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold mb-4">Personalized UV Protection Recommendation</h2>
         <div class="space-y-4">
@@ -17,18 +17,26 @@
             />
           </div>
 
-          <div>
-            <select
-              v-model="form.skinType"
-              id="skin-type"
-              class="w-full border border-gray-300 rounded-lg px-4 py-3"
-              required
+          <div class="flex flex-wrap gap-2">
+            <button
+              v-for="type in skinTypes"
+              :key="type.type"
+              @click="selectSkinType(type.type)"
+              class="w-24 h-12 rounded-lg border transition font-semibold"
+              :class="{
+                'ring-2 ring-blue-500 text-white': form.skinType === type.type,
+                'border-gray-300': form.skinType !== type.type,
+                'bg-[#fee4e1] text-black': type.type === 'I', 
+                'bg-[#f8d4b1] text-black': type.type === 'II',
+                'bg-[#e5b181] text-black': type.type === 'III',
+                'bg-[#c88f62] text-white': type.type === 'IV',
+                'bg-[#8d5a44] text-white': type.type === 'V',
+                'bg-[#5a3e30] text-white': type.type === 'VI',
+                'bg-[#d69e2e]': form.skinType === type.type 
+              }"
             >
-              <option value="">Select your skin type</option>
-              <option v-for="type in skinTypes" :key="type.type" :value="type.type">
-                Type {{ type.type }} ({{ type.description }})
-              </option>
-            </select>
+              Type {{ type.type }}
+            </button>
           </div>
 
           <div>
@@ -113,6 +121,10 @@ onMounted(() => {
     })
     .catch((error) => console.error('Error loading skin types data:', error))
 })
+
+const selectSkinType = (type) => {
+  form.value.skinType = type;
+};
 
 const generateRecommendation = () => {
   if (!form.value.age || !form.value.skinType) {

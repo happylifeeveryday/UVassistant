@@ -12,4 +12,8 @@ import Footer from './components/Footer.vue'
   </div>
 </template>
 
-<style scoped></style>
+<style>
+button:hover {
+  cursor: pointer;
+}
+</style>

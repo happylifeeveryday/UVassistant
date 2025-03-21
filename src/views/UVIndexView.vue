@@ -63,7 +63,7 @@
                 <div class="flex items-center justify-center text-white font-bold">11+</div>
               </div>
               <div class="grid grid-cols-5 gap-0 mt-1 w-full">
-                <div class="text-center text-green-500">Low</div>
+                <div class="text-center" style="color: #ffe639;">Low</div>
                 <div class="text-center text-yellow-500">Moderate</div>
                 <div class="text-center text-orange-500">High</div>
                 <div class="text-center text-red-500">Very High</div>

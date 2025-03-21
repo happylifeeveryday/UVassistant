@@ -20,7 +20,19 @@
                 placeholder="Enter your sunscreen SPF value"
                 class="w-full border border-gray-300 rounded-lg px-4 py-3"
               />
-              <span class="text-blue-600 cursor-pointer" :title="spfTooltip">?</span>
+              <div
+                class="relative inline-block"
+                @mouseenter="show = true"
+                @mouseleave="show = false"
+              >
+                <span class="text-blue-600 cursor-pointer">?</span>
+                <div
+                  v-if="show"
+                  class="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 p-2 bg-gray-700 text-white text-sm rounded shadow w-48"
+                >
+                  {{ spfTooltip }}
+                </div>
+              </div>
             </label>
           </div>
 
@@ -64,6 +76,7 @@ const currentTime = ref('')
 const userLatitude = ref(null)
 const userLongitude = ref(null)
 const toast = useToast()
+const show = ref(false)
 
 const spfTooltip = ref(
   'SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.',

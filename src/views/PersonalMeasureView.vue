@@ -26,13 +26,13 @@
               :class="{
                 'ring-2 ring-blue-500 text-white': form.skinType === type.type,
                 'border-gray-300': form.skinType !== type.type,
-                'bg-[#fee4e1] text-black': type.type === 'I', 
+                'bg-[#fee4e1] text-black': type.type === 'I',
                 'bg-[#f8d4b1] text-black': type.type === 'II',
                 'bg-[#e5b181] text-black': type.type === 'III',
                 'bg-[#c88f62] text-white': type.type === 'IV',
                 'bg-[#8d5a44] text-white': type.type === 'V',
                 'bg-[#5a3e30] text-white': type.type === 'VI',
-                'bg-[#d69e2e]': form.skinType === type.type 
+                'bg-[#d69e2e]': form.skinType === type.type,
               }"
             >
               Type {{ type.type }}
@@ -123,8 +123,8 @@ onMounted(() => {
 })
 
 const selectSkinType = (type) => {
-  form.value.skinType = type;
-};
+  form.value.skinType = type
+}
 
 const generateRecommendation = () => {
   if (!form.value.age || !form.value.skinType) {
@@ -191,10 +191,10 @@ const generateRecommendation = () => {
   }
 }
 const handleImageError = (event, item) => {
-  console.error(`Failed to load image: /data/${item}`);
-  event.target.src = '/data/placeholder.png'; 
-  event.target.alt = `Image not found: ${item.replace('.png', '').replace('_', ' ')}`;
-};
+  console.error(`Failed to load image: /data/${item}`)
+  event.target.src = '/data/placeholder.png'
+  event.target.alt = `Image not found: ${item.replace('.png', '').replace('_', ' ')}`
+}
 </script>
 
 <style scoped>

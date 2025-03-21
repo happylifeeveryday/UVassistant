@@ -52,7 +52,7 @@ const router = createRouter({
     } else {
       return { top: 0, left: 0 }
     }
-  }
+  },
 })
 
 export default router

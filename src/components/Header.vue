@@ -17,12 +17,10 @@
             <input
               type="text"
               placeholder="Search"
-              class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-200
-                     focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
             <i
-              class="fa-solid fa-magnifying-glass absolute left-3 top-1/2
-                     -translate-y-1/2 text-gray-400"
+              class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
             ></i>
           </div>
         </div>
@@ -44,19 +42,11 @@
         <div class="flex items-center md:hidden">
           <button
             type="button"
-            class="inline-flex items-center justify-center p-2
-                   rounded-md text-gray-400 hover:text-gray-600
-                   focus:outline-none focus:ring-2 focus:ring-offset-2
-                   focus:ring-offset-gray-100 focus:ring-gray-500"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500"
             @click="isOpen = !isOpen"
           >
             <span class="sr-only">Open main menu</span>
-            <svg
-              class="h-6 w-6"
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
+            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -73,10 +63,18 @@
     <nav class="hidden md:flex justify-center space-x-8 py-4 max-w-7xl mx-auto px-4">
       <router-link to="/" class="text-gray-600 font-medium">Home</router-link>
       <router-link to="/ViewUVIndex" class="text-gray-600 font-medium">UV Index</router-link>
-      <router-link to="/Reminder" class="text-gray-600 hover:text-gray-900">Screen Reminder</router-link>
-      <router-link to="/PersonalMeasure" class="text-gray-600 font-medium">Personal Recommendation</router-link>
-      <router-link to="/ImpactView" class="text-gray-600 hover:text-gray-900">Data Insights</router-link>
-      <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900">Effects Of Sun Exposure</router-link>
+      <router-link to="/Reminder" class="text-gray-600 hover:text-gray-900"
+        >Screen Reminder</router-link
+      >
+      <router-link to="/PersonalMeasure" class="text-gray-600 font-medium"
+        >Personal Recommendation</router-link
+      >
+      <router-link to="/ImpactView" class="text-gray-600 hover:text-gray-900"
+        >Data Insights</router-link
+      >
+      <router-link to="/EffectsOfSunExposure" class="text-gray-600 hover:text-gray-900"
+        >Effects Of Sun Exposure</router-link
+      >
     </nav>
 
     <!-- Mobile menu (visible when isOpen === true) -->
@@ -87,23 +85,17 @@
           <input
             type="text"
             placeholder="Search"
-            class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-200
-                   focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            class="w-full pl-10 pr-4 py-2 rounded-lg border-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
           <i
-            class="fa-solid fa-magnifying-glass absolute left-3 top-1/2
-                   -translate-y-1/2 text-gray-400"
+            class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
           ></i>
         </div>
       </div>
 
       <!-- Navigation links on mobile -->
       <nav class="flex flex-col space-y-2 py-2 border-t border-gray-200 px-4">
-        <router-link
-          to="/"
-          class="block text-gray-600 font-medium"
-          @click="isOpen = false"
-        >
+        <router-link to="/" class="block text-gray-600 font-medium" @click="isOpen = false">
           Home
         </router-link>
         <router-link
@@ -162,12 +154,10 @@
 <script setup>
 import { ref } from 'vue'
 
-
 const isOpen = ref(false)
 </script>
 
 <style scoped>
-
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -177,11 +167,9 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-
 .no-active-class.router-link-active {
   color: inherit;
 }
-
 
 .router-link-active {
   color: #2563eb;

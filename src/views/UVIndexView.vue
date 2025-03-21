@@ -4,11 +4,22 @@
       <div class="bg-white rounded-lg shadow-lg p-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="space-y-4">
-            <input type="text" v-model="locationName" placeholder="Enter location name" class="w-full border border-gray-300 rounded-lg px-4 py-3" />
-            <button @click="fetchWeatherByLocationName" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition w-full">
+            <input
+              type="text"
+              v-model="locationName"
+              placeholder="Enter location name"
+              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+            />
+            <button
+              @click="fetchWeatherByLocationName"
+              class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition w-full"
+            >
               Get Weather & UV by Location Name
             </button>
-            <button @click="getLocation" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full">
+            <button
+              @click="getLocation"
+              class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full"
+            >
               Get Current Location Weather & UV
             </button>
             <div class="border p-4 rounded-lg">
@@ -31,14 +42,22 @@
               </div>
               <div class="h-4 bg-gradient-to-r from-[#ffeb3b] via-[#ff9800] to-[#9c27b0] relative">
                 <!-- UV Index Marker -->
-                <div 
-                  class="absolute top-0 h-6 w-4 bg-black text-white text-xs flex items-center justify-center rounded-md transform -translate-x-1/2" 
-                  :style="{ left: uvIndexPosition }">
+                <div
+                  class="absolute top-0 h-6 w-4 bg-black text-white text-xs flex items-center justify-center rounded-md transform -translate-x-1/2"
+                  :style="{ left: uvIndexPosition }"
+                >
                   ▲
                 </div>
               </div>
-              <div class="grid grid-cols-11 w-full h-10 mt-2" style="background: linear-gradient(to right, #ffeb3b, #ff9800, #9c27b0);">
-                <div v-for="n in 10" :key="n" class="flex items-center justify-center text-white font-bold">
+              <div
+                class="grid grid-cols-11 w-full h-10 mt-2"
+                style="background: linear-gradient(to right, #ffeb3b, #ff9800, #9c27b0)"
+              >
+                <div
+                  v-for="n in 10"
+                  :key="n"
+                  class="flex items-center justify-center text-white font-bold"
+                >
                   {{ n }}
                 </div>
                 <div class="flex items-center justify-center text-white font-bold">11+</div>
@@ -86,7 +105,9 @@ async function fetchWeatherByLocationName() {
     return
   }
   try {
-    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(locationName.value)},AU&appid=${API_KEY}`)
+    const geoRes = await fetch(
+      `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(locationName.value)},AU&appid=${API_KEY}`,
+    )
     const geoData = await geoRes.json()
     if (!geoData.length) {
       alert('Location not found.')
@@ -113,7 +134,7 @@ async function getLocation() {
     },
     (error) => {
       alert('Failed to get location: ' + error.message)
-    }
+    },
   )
 }
 async function fetchWeatherData(lat, lon) {
@@ -157,12 +178,12 @@ function initForecastChart() {
     xAxis: { type: 'category', data: hours },
     yAxis: [
       { type: 'value', name: 'Temperature (°C)' },
-      { type: 'value', name: 'UVI' }
+      { type: 'value', name: 'UVI' },
     ],
     series: [
       { name: 'Temperature (°C)', type: 'line', data: temps, smooth: true, yAxisIndex: 0 },
-      { name: 'UVI', type: 'line', data: uvis, smooth: true, yAxisIndex: 1 }
-    ]
+      { name: 'UVI', type: 'line', data: uvis, smooth: true, yAxisIndex: 1 },
+    ],
   }
   myChart.setOption(option)
   window.addEventListener('resize', () => myChart.resize())
@@ -187,6 +208,4 @@ const uvTips = computed(() => {
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

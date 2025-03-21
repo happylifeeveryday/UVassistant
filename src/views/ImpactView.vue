@@ -1,29 +1,38 @@
 <template>
   <div v-if="result" class="space-y-16 pt-24 pb-24">
-    <div class="grid grid-cols-1 gap-8 space-y-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="chart-card">
-        <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
-          <div ref="ageRateChart" style="width: 100%; height: 100%;"></div>
+        <div class="chart-container" style="position: relative; height: 400px; width: 100%">
+          <div ref="ageRateChart" style="width: 100%; height: 100%"></div>
         </div>
-        <div class="border px-8 py-6 rounded-lg mt-4 mx-auto max-w-3xl"> 
+        <div class="border px-8 py-6 rounded-lg mt-4 mx-auto max-w-3xl">
           <p class="font-bold text-lg">
-            This bar chart illustrates the cancer incidence rate across different age groups in 2024. It highlights variations in cancer rates among different demographics, showing trends that can inform public health research. By segmenting the data by age, this visualization provides valuable insights into how cancer risk changes over a lifetime.
+            This bar chart illustrates the skin cancer (melanoma of the skin) incidence rate across
+            different age groups in 2024. <br />
+            It highlights variations in skin cancer rates among different demographics, showing
+            trends that can inform public health research. <br />
+            By segmenting the data by age, this visualization provides valuable insights into how
+            cancer risk changes over a lifetime.
           </p>
         </div>
       </div>
       <div class="chart-card">
-        <div class="chart-container" style="position: relative; height: 400px; width: 100%;">
-          <div ref="cancerTrendChart" style="width: 100%; height: 100%;"></div>
+        <div class="chart-container" style="position: relative; height: 400px; width: 100%">
+          <div ref="cancerTrendChart" style="width: 100%; height: 100%"></div>
         </div>
-        <div class="border px-8 py-6 rounded-lg mt-4 mx-auto max-w-3xl"> 
+        <div class="border px-8 py-6 rounded-lg mt-4 mx-auto max-w-3xl">
           <p class="font-bold text-lg">
-            This line chart presents the trend of young adult cancer rates over multiple years, offering insight into how the rate has evolved over time. The data spans several decades, providing a comprehensive view of changes and potential influencing factors, which can guide future health policies and research.
+            This line chart presents the trend of young adult (aged between 25 to 29) skin cancer
+            rates over multiple years, offering insight into how the rate has evolved over time.
+            <br />
+            The data spans several decades, providing a comprehensive view of changes and potential
+            influencing factors, which can guide future health policies and research.
           </p>
         </div>
       </div>
     </div>
   </div>
-</template> 
+</template>
 
 <script setup>
 import { ref, nextTick, onMounted } from 'vue'
@@ -65,7 +74,7 @@ const initAgeRateChart = (ageData) => {
 
   const option = {
     title: {
-      text: 'Number of Cancer Patient Over Different Age Group 2024',
+      text: 'Skin Cancer Rate Over Different Age Groups in 2024',
       left: 'center',
     },
     tooltip: {
@@ -75,13 +84,13 @@ const initAgeRateChart = (ageData) => {
       type: 'category',
       data: labels,
       axisLabel: {
-        rotate: 45
+        rotate: 45,
       },
-      name: 'Age Group'
+      name: 'Age Group',
     },
     yAxis: {
       type: 'value',
-      name: 'Rate (per 100,000)' 
+      name: 'Rate (per 100,000)',
     },
     series: [
       {
@@ -113,7 +122,7 @@ const initCancerTrendChart = (trendData) => {
 
   const option = {
     title: {
-      text: 'Young Adult Cancer Trend',
+      text: 'Young Adult Skin Cancer Rate',
       left: 'center',
     },
     tooltip: {
@@ -122,11 +131,11 @@ const initCancerTrendChart = (trendData) => {
     xAxis: {
       type: 'category',
       data: labels,
-      name: 'Year' 
+      name: 'Year',
     },
     yAxis: {
       type: 'value',
-      name: 'Rate (per 100,000)' 
+      name: 'Rate (per 100,000)',
     },
     series: [
       {

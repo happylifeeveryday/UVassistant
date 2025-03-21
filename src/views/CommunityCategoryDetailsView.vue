@@ -96,7 +96,7 @@ const content = computed(() => {
 const title = computed(() => content.value.title)
 
 function goBack() {
-  router.push({ name: 'EffectsOfSunExposure' }) 
+  router.push({ name: 'EffectsOfSunExposure' })
 }
 </script>
 

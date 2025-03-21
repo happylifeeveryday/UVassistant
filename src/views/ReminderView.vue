@@ -4,7 +4,6 @@
       <div class="bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold mb-4">Sunscreen Reminder</h2>
         <div class="space-y-4">
-
           <div class="border p-4 rounded-lg">
             <p><strong>Current Time:</strong> {{ currentTime }}</p>
             <p>
@@ -66,8 +65,9 @@ const userLatitude = ref(null)
 const userLongitude = ref(null)
 const toast = useToast()
 
-
-const spfTooltip = ref('SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.')
+const spfTooltip = ref(
+  'SPF stands for Sun Protection Factor, indicating how long sunscreen can protect skin from UVB rays.',
+)
 function updateTime() {
   const now = new Date()
   currentTime.value = now.toLocaleTimeString()
@@ -96,7 +96,6 @@ function getCurrentLocationAndFetchData() {
   )
 }
 
-
 async function fetchWeatherData(lat, lon) {
   try {
     const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
@@ -111,7 +110,6 @@ async function fetchWeatherData(lat, lon) {
     }
 
     if (data.hourly && data.hourly.length > 0) {
-
       hourlyForecast.value = data.hourly.slice(0, 24)
       await nextTick()
       initForecastChart()
@@ -120,7 +118,6 @@ async function fetchWeatherData(lat, lon) {
     toast.error('Error fetching weather data: ' + error)
   }
 }
-
 
 function initForecastChart() {
   const chartDom = forecastChart.value
@@ -171,12 +168,11 @@ function initForecastChart() {
   window.addEventListener('resize', () => myChart.resize())
 }
 
-
 function sendNotification(title, body) {
   if (Notification.permission === 'granted') {
     new Notification(title, {
       body: body,
-      icon: '/notification_icon.png', 
+      icon: '/notification_icon.png',
     })
   }
 }
@@ -207,7 +203,6 @@ function calculateReminder() {
     return
   }
 
-
   let effectiveDuration = 2
   if (spfValue.value > 15) {
     effectiveDuration += (spfValue.value - 15) * 0.1
@@ -218,7 +213,7 @@ function calculateReminder() {
 
   if (reapplyTime >= zeroUviTime) {
     toast.info(
-      `Sunscreen Reminder \nIf you're going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won't need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`
+      `Sunscreen Reminder \nIf you're going to apply sunscreen with SPF ${spfValue.value} now (${now.toLocaleTimeString()}), you won't need to reapply it again today, as the UV index will drop to 0 starting from ${zeroUviTime.toLocaleTimeString()}.`,
     )
     sendNotification(
       'Sunscreen Reminder',
@@ -226,7 +221,7 @@ function calculateReminder() {
     )
   } else {
     toast.info(
-      `Sunscreen Reminder \nBetween now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`
+      `Sunscreen Reminder \nBetween now (${now.toLocaleTimeString()}) and ${zeroUviTime.toLocaleTimeString()}, please reapply your SPF ${spfValue.value} sunscreen at ${reapplyTime.toLocaleTimeString()}. At that time, I will remind you!`,
     )
     sendNotification(
       'Sunscreen Reminder',
